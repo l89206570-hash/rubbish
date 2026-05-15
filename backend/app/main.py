@@ -9,8 +9,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import config
 from app.core.database import init_local_db
 from app.core.erp_client import init_erp_client
-from app.routers import dashboard, summaries, schedules
+from app.routers import dashboard, summaries, schedules, auth as auth_router
 from app.services.scheduler import init_scheduler
+from app.auth.jwt import JWTAuthMiddleware
 
 logging.basicConfig(
     level=logging.INFO,
@@ -58,10 +59,14 @@ app.add_middleware(
 )
 
 
+# JWT 认证中间件（预留 — 环境变量 AUTH_ENABLED 控制）
+app.add_middleware(JWTAuthMiddleware)
+
 # 注册路由
 app.include_router(dashboard.router)
 app.include_router(summaries.router)
 app.include_router(schedules.router)
+app.include_router(auth_router.router)
 
 
 @app.get("/api/health")
