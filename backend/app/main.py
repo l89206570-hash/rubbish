@@ -9,7 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import config
 from app.core.database import init_local_db
 from app.core.erp_client import init_erp_client
-from app.routers import dashboard
+from app.routers import dashboard, summaries, schedules
+from app.services.scheduler import init_scheduler
 
 logging.basicConfig(
     level=logging.INFO,
@@ -31,6 +32,10 @@ async def lifespan(app: FastAPI):
 
     # 初始化 ERP 客户端
     init_erp_client()
+
+    # 初始化调度器（模块4）
+    init_scheduler()
+    logger.info("APScheduler 调度器初始化完成 ✓")
 
     logger.info("=" * 50)
     yield
@@ -55,6 +60,8 @@ app.add_middleware(
 
 # 注册路由
 app.include_router(dashboard.router)
+app.include_router(summaries.router)
+app.include_router(schedules.router)
 
 
 @app.get("/api/health")
