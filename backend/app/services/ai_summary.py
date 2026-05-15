@@ -3,6 +3,8 @@
 import logging
 from datetime import date, datetime
 
+from typing import Optional
+
 from openai import OpenAI
 
 from app.config import config
@@ -11,10 +13,10 @@ from app.schemas.indicators import IndicatorResponse
 
 logger = logging.getLogger(__name__)
 
-_client: OpenAI | None = None
+_client: Optional[OpenAI] = None
 
 
-def _get_client() -> OpenAI | None:
+def _get_client() -> Optional[OpenAI]:
     global _client
     if _client is not None:
         return _client

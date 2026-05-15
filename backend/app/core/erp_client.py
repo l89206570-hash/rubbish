@@ -5,7 +5,7 @@
 
 import logging
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
+from typing import AsyncGenerator, List, Optional, Dict
 
 from sqlalchemy import create_engine, text
 from sqlalchemy.orm import Session, sessionmaker
@@ -67,7 +67,7 @@ def get_erp_session() -> Session:
     return _erp_session_local()
 
 
-def list_erp_tables() -> list[str]:
+def list_erp_tables() -> List[str]:
     """列出 ERP 数据库中的表"""
     session = get_erp_session()
     try:
@@ -84,7 +84,7 @@ def list_erp_tables() -> list[str]:
         session.close()
 
 
-def execute_query(sql: str, params: dict | None = None) -> list[dict]:
+def execute_query(sql: str, params: Optional[Dict[str, object]] = None) -> List[dict]:
     """安全执行只读 SQL 查询，返回字典列表"""
     session = get_erp_session()
     try:

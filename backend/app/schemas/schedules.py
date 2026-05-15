@@ -1,6 +1,7 @@
 """调度规则 Schema"""
 
 from datetime import datetime
+from typing import Optional
 from pydantic import BaseModel
 
 
@@ -12,11 +13,11 @@ class ScheduleCreate(BaseModel):
 
 
 class ScheduleUpdate(BaseModel):
-    name: str | None = None
-    cron_expression: str | None = None
-    period_type: str | None = None
-    board_scope: str | None = None
-    enabled: bool | None = None
+    name: Optional[str] = None
+    cron_expression: Optional[str] = None
+    period_type: Optional[str] = None
+    board_scope: Optional[str] = None
+    enabled: Optional[bool] = None
 
 
 class ScheduleResponse(BaseModel):

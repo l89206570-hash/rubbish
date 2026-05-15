@@ -53,7 +53,7 @@ def _run_summary_job(rule_id: int, period_type: str, period_start: str, period_e
         db.close()
 
 
-def _calc_period(period_type: str) -> tuple[str, str]:
+def _calc_period(period_type: str):
     """根据周期类型计算起止日期"""
     today = date.today()
     if period_type == "daily":

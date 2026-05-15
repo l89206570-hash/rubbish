@@ -1,6 +1,7 @@
 """调度规则 API — CRUD + 启用/暂停"""
 
 import logging
+from typing import List
 from datetime import datetime
 
 from fastapi import APIRouter, Depends
@@ -34,7 +35,7 @@ def create_rule(req: ScheduleCreate, db: Session = Depends(get_local_db)):
     return rule
 
 
-@router.get("", response_model=list[ScheduleResponse])
+@router.get("", response_model=List[ScheduleResponse])
 def list_rules(db: Session = Depends(get_local_db)):
     """列出所有调度规则"""
     return db.query(ScheduleRule).order_by(ScheduleRule.created_at.desc()).all()

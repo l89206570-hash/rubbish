@@ -1,6 +1,7 @@
 """AI 总结 Schema"""
 
 from datetime import datetime
+from typing import List
 from pydantic import BaseModel
 
 
@@ -27,4 +28,4 @@ class SummaryResponse(BaseModel):
 
 class SummaryListResponse(BaseModel):
     total: int
-    items: list[SummaryResponse]
+    items: List[SummaryResponse]

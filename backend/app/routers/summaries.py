@@ -1,6 +1,7 @@
 """AI 总结 API — 生成 + 查询历史"""
 
 import logging
+from typing import Optional
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, Query
@@ -42,8 +43,8 @@ def create_summary(req: SummaryCreate, db: Session = Depends(get_local_db)):
 
 @router.get("", response_model=SummaryListResponse)
 def list_summaries(
-    period_type: str | None = Query(None),
-    trigger_type: str | None = Query(None),
+    period_type: Optional[str] = Query(None),
+    trigger_type: Optional[str] = Query(None),
     offset: int = Query(0, ge=0),
     limit: int = Query(20, ge=1, le=100),
     db: Session = Depends(get_local_db),
