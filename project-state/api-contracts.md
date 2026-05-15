@@ -23,3 +23,8 @@
 | IndicatorResponse | `board, title, current_value, yoy_change, mom_change, trend, unit, extra` | 标准化指标响应格式 |
 | DashboardSummary | `{revenue, cashflow, inventory, sales, hr, cost}` | 聚合响应格式 |
 | calc_{板块} | `services.{板块}.calculate(period) -> IndicatorResponse` | 各板块计算函数 |
+
+## 模块3 → 模块5（前端API调用约定）
+| 端点 | 说明 |
+|------|------|
+| `GET /api/dashboard?period=current` | 后端提供，前端通过Vite proxy `/api` → `localhost:8000` |
