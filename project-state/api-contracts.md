@@ -14,3 +14,12 @@
 | MOCK_DATA | `app.core.erp_client.MOCK_DASHBOARD_DATA -> dict` | 6大板块Mock数据 |
 | init_erp_client | `app.core.erp_client.init_erp_client()` | 启动时初始化ERP连接 |
 | init_local_db | `app.core.database.init_local_db()` | 启动时初始化本地库 |
+
+## 模块2 → 模块3+
+| 函数/端点 | 签名 | 说明 |
+|-----------|------|------|
+| get_all_boards | `GET /api/dashboard?period=current` | 返回6大板块完整指标数据 |
+| get_board | `GET /api/dashboard/{board}?period=current` | 返回单个板块指标 |
+| IndicatorResponse | `board, title, current_value, yoy_change, mom_change, trend, unit, extra` | 标准化指标响应格式 |
+| DashboardSummary | `{revenue, cashflow, inventory, sales, hr, cost}` | 聚合响应格式 |
+| calc_{板块} | `services.{板块}.calculate(period) -> IndicatorResponse` | 各板块计算函数 |

@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.config import config
 from app.core.database import init_local_db
 from app.core.erp_client import init_erp_client
+from app.routers import dashboard
 
 logging.basicConfig(
     level=logging.INFO,
@@ -50,6 +51,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# 注册路由
+app.include_router(dashboard.router)
 
 
 @app.get("/api/health")
