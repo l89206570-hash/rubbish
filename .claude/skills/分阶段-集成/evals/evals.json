@@ -1,0 +1,17 @@
+{
+  "skill_name": "分阶段-集成",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "所有模块都写完了，帮我做集成验证。",
+      "expected_output": "检查state.json确认所有模块完成，然后执行接口兼容性检查（逐对检查模块间接口）、修复发现的边界问题、运行端到端验证、输出最终项目文档（文件树/启动方式/环境要求/测试方法/部署说明）",
+      "files": [".claude/phased-build/state.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "联调一下，看看各模块接口有没有问题。",
+      "expected_output": "重点进行接口兼容性检查，列出每对相邻模块的接口匹配状态，标记不匹配项并逐一修复，不引入新功能或重构",
+      "files": [".claude/phased-build/state.json"]
+    }
+  ]
+}

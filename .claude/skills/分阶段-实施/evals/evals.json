@@ -1,0 +1,23 @@
+{
+  "skill_name": "分阶段-实施",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "开始实施。当前模块是模块1：项目骨架和配置文件。请按照分阶段实施协议执行。",
+      "expected_output": "输出BEFORE_START检查清单（模块编号/目标/影响文件/风险/依赖），然后实施代码（仅创建当前模块文件），最后输出MODULE_SUMMARY和CONTEXT_COMPRESSION，并更新state.json",
+      "files": [".claude/phased-build/plan.md", ".claude/phased-build/state.json"]
+    },
+    {
+      "id": 2,
+      "prompt": "继续执行下一个模块。",
+      "expected_output": "读取state.json定位当前模块，输出BEFORE_START检查清单，实施代码，输出完整的MODULE_SUMMARY+CONTEXT_COMPRESSION，状态压缩内容足够后续模块使用",
+      "files": [".claude/phased-build/state.json"]
+    },
+    {
+      "id": 3,
+      "prompt": "上下文太长了，帮我压缩一下状态然后继续。",
+      "expected_output": "输出CONTEXT_COMPRESSION，包含项目架构摘要/已完成模块/剩余模块/关键API/数据结构/文件树变化，更新state.json，然后继续执行下一个模块",
+      "files": [".claude/phased-build/state.json"]
+    }
+  ]
+}
